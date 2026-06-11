@@ -3,7 +3,7 @@ function [ f ] = com_quad(alpha)
 %   Detailed explanation goes here
 
 n = size(alpha,1)-1;
-for i = 1:size(alpha)
+for i = 1:size(alpha,1)
     if alpha(i)<0
         f=0;
         n=10000;
