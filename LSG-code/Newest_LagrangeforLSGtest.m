@@ -64,7 +64,7 @@ Ndof = double(max(elem2dof1(:)));
 elem2dof = [elem2dof1];
 Stiff = sparse(Ndof,Ndof);
 M =  Stiff;
-% 统一法向
+% ç»Ÿä¸€æ³•å‘
 elemnor = elemn;
 elemn(:,:,1)=elemn(:,:,1).*elem2edgeSign(:,1);
 elemn(:,:,2)=elemn(:,:,2).*elem2edgeSign(:,2);
@@ -266,7 +266,7 @@ end
 clear AA MM
 %  
    
-%% 组装刚度矩阵 
+%% ç»„è£…åˆšåº¦çŸ©é˜µ 
 %DPHI = zeros(10,10);
 Dx = zeros(NT,base_num);
 Dy = zeros(NT,base_num);
@@ -359,7 +359,7 @@ end
 % 
  end      
 %Stiff = Stiff + (1/hsize^5)*pA;
-%% 右端�?        
+%% å³ç«¯é¡?        
 %big_Stiff = [iota*Stiff+M, sparse(Ndof,Ndof),sparse(Ndof,Ndof);sparse(Ndof,Ndof),iota*Stiff+M,sparse(Ndof,Ndof);sparse(Ndof,Ndof),sparse(Ndof,Ndof),2*iota*Stiff+2*M];%blkdiag(Stiff,Stiff);
 beta_m = (2*mu+La)/(4*mu*(La+mu));
 beta_G = -La/(4*mu*(La+mu));
