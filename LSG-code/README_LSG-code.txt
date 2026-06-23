@@ -36,6 +36,8 @@ The following files are the main scripts for the numerical experiments.
     P7Lagrange_Inf_sup_HermiteforLSGtest.m
         Script for testing the inf-sup constant for the P7 Lagrange-type element.
 
+    C2forLSG_iota_rate.m
+        Main script for testing the convergence behavior with respect to the small parameter `iota` for the linear stress gradient elasticity problem.
 
 2. Degree-of-freedom numbering routines
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
