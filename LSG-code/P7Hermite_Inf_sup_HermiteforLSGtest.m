@@ -1,9 +1,34 @@
  
 %% Introduction
-% Note! this code now is test the case iota=0, i.e., is a HR-linear
-% elasticity problem. 
-% Just click run, error_s represent the L2 error of sigma
-%  error1 is the L2 error of displacement
+% This script runs the verification experiment for the Hermite-type
+% finite element pair for the linear stress gradient elasticity problem.
+%
+% The script can be run directly in MATLAB. It computes numerical
+% solutions on a sequence of meshes and compares them with a precomputed
+% reference solution obtained on a fine mesh.
+%
+% Current setting:
+%   - finite element: P4 Hermite-type stress element
+%   - right-hand side: La_Ipf_LSG.m
+%   - reference solution: solutiota10e4new.mat
+%   - small parameter: iota = 1.0e-04
+%
+% Important:
+% The value of iota must be consistent with the loaded reference data.
+% For example,
+%
+%   iota = 1          -> solutiota1new.mat
+%   iota = 1.0e-01    -> solutiota10e1new.mat
+%   iota = 1.0e-02    -> solutiota10e2new.mat
+%   iota = 1.0e-04    -> solutiota10e4new.mat
+%
+% To test another value of iota, change both the line defining iota and
+% the corresponding reference solution file loaded below.
+%
+% Output:
+% The script prints the mesh size, the L2 error of the displacement, and
+% the H1-type error of the stress in the MATLAB command window.
+
 for mesh_s=1:1
 %%  Mesh Setting
 % hsize = 1/(2*mesh_s);    
