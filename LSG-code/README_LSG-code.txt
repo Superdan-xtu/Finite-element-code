@@ -234,6 +234,105 @@ and
 These scripts test the behavior of the discrete inf-sup constant for the P7
 Hermite-type and P7 Lagrange-type elements, respectively.
 
+Example 3: iota rate tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Iota-rate test
+
+The script
+
+```
+C2forLSG_iota_rate.m
+```
+
+is used to test the convergence behavior with respect to the small parameter `iota` for the linear stress gradient elasticity problem.
+
+This script uses the P5 H1-conforming stress element with C2 continuity at vertices and a fixed mesh size
+
+```
+hsize = 1/64.
+```
+
+The value of the small parameter is set inside the script, for example,
+
+```
+iota = 1.0e-03;
+```
+
+To test different values of `iota`, modify this line and run the script again.
+
+#### How to run
+
+Open MATLAB, set the current working directory to `LSG-code`, and run
+
+```
+C2forLSG_iota_rate
+```
+
+directly.
+
+The script does not require input arguments. After the computation, the result will be printed in the MATLAB command window. The output has the form
+
+```
+Hsize:= ...
+iota = ..., energy norm error = ...
+```
+
+The printed energy norm error is used to study the convergence rate with respect to `iota`.
+
+#### Choice of exact solution and right-hand side
+
+There are two sets of manufactured solutions in the code.
+
+1. Boundary-layer case
+
+This case corresponds to the test where the limiting solution does not satisfy the additional boundary condition. It is used to observe the boundary-layer effect.
+
+Use the following functions:
+
+```
+layer_Ipf_LSG.m
+    Right-hand side.
+
+layer_Ipr_LSG.m
+    Exact displacement.
+
+layer_sigma_Ipr_LSG.m
+    Exact stress.
+
+layer_sigmax_Ipr_LSG.m
+    x-derivative of the exact stress.
+
+layer_sigmay_Ipr_LSG.m
+    y-derivative of the exact stress.
+```
+
+In the current version of `C2forLSG_iota_rate.m`, this boundary-layer case is selected.
+
+2. Non-boundary-layer case
+
+This case corresponds to the compatible test where the limiting solution satisfies the additional boundary condition. It is used to observe the higher-order asymptotic behavior with respect to `iota`.
+
+Use the following functions:
+
+```
+La_Ipf_LSG.m
+    Right-hand side.
+
+La_Ipr_LSG.m
+    Exact displacement.
+
+La_Ipr_sigma_LSG.m
+    Exact stress.
+
+La_sigmax_Ipr_LSG.m
+    x-derivative of the exact stress.
+
+La_sigmay_Ipr_LSG.m
+    y-derivative of the exact stress.
+```
+
+To switch between the two cases, the right-hand side and all exact-solution evaluations in the error computation should be changed consistently. For example, when using the non-boundary-layer case, replace the `layer_*` functions by the corresponding `La_*` functions.
+
 
 Notes
 -----
