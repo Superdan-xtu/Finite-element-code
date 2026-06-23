@@ -1,9 +1,12 @@
 clear   
 %% Introduction
-% Note! this code now is test the case iota=0, i.e., is a HR-linear
-% elasticity problem. 
-% Just click run, error_s represent the L2 error of sigma
-%  error1 is the L2 error of displacement
+% This script tests the asymptotic behavior with respect to the small
+% parameter iota for the linear stress gradient elasticity problem.
+% The script can be run directly. The value of iota is set below.
+%
+% The boundary-layer case uses the layer_* functions.
+% The compatible non-boundary-layer case uses the La_* functions.
+% The computed energy norm error is printed in the MATLAB command window.
 %%  Mesh Setting
 for HH = 1:1
 hsize = 1/64;
@@ -45,7 +48,7 @@ Ndof = double(max(elem2dof1(:)));
 elem2dof = [elem2dof1];
 Stiff = sparse(Ndof,Ndof);
 M =  Stiff;
-% 统一法向
+% 缁熶竴娉曞悜
 elemnor = elemn;
 elemn(:,:,1)=elemn(:,:,1).*elem2edgeSign(:,1);
 elemn(:,:,2)=elemn(:,:,2).*elem2edgeSign(:,2);
@@ -359,7 +362,7 @@ A(4:18,:) = [tDx(i,:,1);tDx(i,:,2);tDx(i,:,3);tDy(i,:,1);tDy(i,:,2);tDy(i,:,3);t
 %A(21,:) = nor(3,1)*tDx(i,:,6) + nor(3,2)*tDy(i,:,6);
 
 cof = inv(A);
-COF((i-1)*base_num+1:i*base_num,:)=cof'; %NT行代表这NT个单元第i个基函数的系�?
+COF((i-1)*base_num+1:i*base_num,:)=cof'; %NT琛屼唬琛ㄨ繖NT涓崟鍏冪i涓熀鍑芥暟鐨勭郴鏁?
 end
 
 clear tDx tDy tDxx tDxy tDyy
@@ -423,7 +426,7 @@ DGbase(6,3) = 3*Dlambda(i,1,3);
 DGbase(6,8) = Dlambda(i,1,1);
 DGbase(6,9) = Dlambda(i,1,2);
 
-%% y����ĵ���
+%% y方向的导数
 DGbase(7,1) = 3*Dlambda(i,2,1);
 DGbase(7,4) = Dlambda(i,2,2);
 DGbase(7,5) = Dlambda(i,2,3);
@@ -436,7 +439,7 @@ DGbase(9,3) = 3*Dlambda(i,2,3);
 DGbase(9,8) = Dlambda(i,2,1);
 DGbase(9,9) = Dlambda(i,2,2);
 cof = inv(DGbase);
-DG_COF((i-1)*DG_base_num+1:i*DG_base_num,:)=cof'; %NT行代表这NT个单元第i个基函数的系�?
+DG_COF((i-1)*DG_base_num+1:i*DG_base_num,:)=cof'; %NT琛屼唬琛ㄨ繖NT涓崟鍏冪i涓熀鍑芥暟鐨勭郴鏁?
 end
 
 
@@ -706,7 +709,7 @@ end
 % Clear large temporary arrays for memory saving
 clear Bx By Dx Dy row11 row22 row12 col1 col2 idx ii jj p
 %Stiff = Stiff + (1/hsize^5)*pA;
-%% 右端�?        
+%% 鍙崇椤?        
 %big_Stiff = [iota*Stiff+M, sparse(Ndof,Ndof),sparse(Ndof,Ndof);sparse(Ndof,Ndof),iota*Stiff+M,sparse(Ndof,Ndof);sparse(Ndof,Ndof),sparse(Ndof,Ndof),2*iota*Stiff+2*M];%blkdiag(Stiff,Stiff);
 beta_m = (2*mu+La)/(4*mu*(La+mu));
 beta_G = -La/(4*mu*(La+mu));
