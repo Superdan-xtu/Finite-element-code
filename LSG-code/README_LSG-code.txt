@@ -335,7 +335,7 @@ La_sigmay_Ipr_LSG.m
 
 To switch between the two cases, the right-hand side and all exact-solution evaluations in the error computation should be changed consistently. For example, when using the non-boundary-layer case, replace the `layer_*` functions by the corresponding `La_*` functions.
 
-After run C2forLSG_iota_rate or C2forLSG, then run PlotLSG can obtain the function figures in 3rd Experiments. 
+After run C2forLSG_iota_rate, then run PlotLSG can obtain the function figures in 3rd Experiments. 
 
 Notes
 -----
